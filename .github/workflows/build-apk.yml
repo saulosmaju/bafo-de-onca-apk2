@@ -1,0 +1,53 @@
+name: Build APK
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Install Bubblewrap
+        run: npm install -g @bubblewrap/cli
+      - name: Init TWA
+        run: |
+          bubblewrap init --manifest=https://copa2026-brvcpeua26-b2e677.netlify.app/manifest.json <<EOF
+          y
+          
+          
+          
+          
+          
+          
+          br.com.bafodeonca
+          1
+          
+          
+          
+          
+          
+          
+          y
+          
+          n
+          n
+          
+          android
+          y
+          Saulo Magalhaes
+          dev
+          Bafo de Onca
+          br
+          bafodeonca123
+          bafodeonca123
+          EOF
+      - name: Build APK
+        run: bubblewrap build --ks-pass=bafodeonca123 --key-pass=bafodeonca123
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: bafo-de-onca-apk
+          path: '*.apk'
+          
